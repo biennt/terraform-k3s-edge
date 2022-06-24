@@ -67,7 +67,7 @@ resource "aws_security_group" "allow_all" {
 resource "aws_instance" "k3s" {
   count                       = var.instance_count
   ami                         = "ami-0350928fdb53ae439"
-  instance_type               = "t3.micro"
+  instance_type               = "t3.medium"
   associate_public_ip_address = true
   availability_zone           = aws_subnet.external.availability_zone
   subnet_id                   = aws_subnet.external.id
@@ -86,4 +86,3 @@ output "public_ip" {
     for k, v in aws_instance.k3s : k => v.public_ip
   }
 }
-
